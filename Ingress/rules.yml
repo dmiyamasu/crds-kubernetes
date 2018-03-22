@@ -23,7 +23,7 @@ spec:
       paths:
       - path: /api
         backend:
-          serviceName: cms-ss-varnish
+          serviceName: cms-varnish-service
           servicePort: 80
       - path: /
         backend:
