@@ -16,5 +16,5 @@
 
 # Encodes the environment variables into a Kubernetes secret.
 
-BASE64_ENC=$(cat newrelic-config.env | base64 | tr -d '\n')
-sed -e "s#{{config_data}}#${BASE64_ENC}#g" ./newrelic-config-template.yaml > newrelic-config.yaml
+BASE64_ENC=$(cat config.env | base64 | tr -d '\n')
+sed -e "s#{{config_data}}#${BASE64_ENC}#g" ./config-template.yaml > config.yaml
