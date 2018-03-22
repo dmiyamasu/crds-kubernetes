@@ -16,5 +16,7 @@
 
 # Encodes the environment variables into a Kubernetes secret.
 
-BASE64_ENC=$(cat config.env | base64 | tr -d '\n')
-sed -e "s#{{config_data}}#${BASE64_ENC}#g" ./config-template.yml > config.yml
+BASE64_ENC_KEY=$(cat $CRDS_SSL_PATH/tls.key | base64 | tr -d '\n')
+BASE64_ENC_CRT=$(cat $CRDS_SSL_PATH/tls.crt | base64 | tr -d '\n')
+sed -e "s#{{tls_key_placeholder}}#${BASE64_ENC_KEY}#g" ./crossroads-ssl-template.yml > crossroads-ssl-interum.yml
+sed -e "s#{{tls_crt_placeholder}}#${BASE64_ENC_CRT}#g" ./crossroads-ssl-interum.yml > crossroads-ssl.yml
