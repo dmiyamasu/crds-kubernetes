@@ -12,9 +12,6 @@ spec:
       labels:
         name: newrelic
     spec:
-      # Filter to specific nodes:
-      # nodeSelector:
-      #  app: newrelic
       hostPID: true
       hostIPC: true
       hostNetwork: true
