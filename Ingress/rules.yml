@@ -7,18 +7,19 @@ metadata:
 spec:
   tls:
   - hosts:
-    - $MAESTRO_HOST_NAME
-    - $CMS_HOST_NAME
+    - maestro-int.crossroads.net
+    - contentint.crossroads.net
+    - golocal-int.crossroads.net
     secretName: crossroads-ssl
   rules:
-  - host: $MAESTRO_HOST_NAME
+  - host: maestro-int.crossroads.net
     http:
       paths:
       - path: /
         backend:
           serviceName: maestro-varnish-service
           servicePort: 80
-  - host: $CMS_HOST_NAME
+  - host: contentint.crossroads.net
     http:
       paths:
       - path: /api
@@ -28,4 +29,11 @@ spec:
       - path: /
         backend:
           serviceName: cms-ss-admin
+          servicePort: 80
+  - host: golocal-int.crossroads.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: go-local-service
           servicePort: 80

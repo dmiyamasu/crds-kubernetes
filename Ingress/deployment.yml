@@ -27,7 +27,7 @@ spec:
         - containerPort: 443
         args:
         - /nginx-ingress-controller
-        - --default-backend-service=$(POD_NAMESPACE)/maestro-phoenix-service
+        - --default-backend-service=$(POD_NAMESPACE)/crds-fake-default-backend-service
         - --configmap=$(POD_NAMESPACE)/crds-ingress-nginx-config
         - --default-ssl-certificate=default/crossroads-ssl
         - --annotations-prefix=ingress.kubernetes.io
