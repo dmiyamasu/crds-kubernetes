@@ -27,5 +27,5 @@ spec:
           servicePort: 80
       - path: /
         backend:
-          serviceName: cms-ss-admin
+          serviceName: cms-ss-admin-service
           servicePort: 80
