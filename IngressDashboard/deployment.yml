@@ -28,7 +28,7 @@ spec:
         - containerPort: 443
         args:
         - /nginx-ingress-controller
-        - --default-backend-service=$(POD_NAMESPACE)/kubernetes-dashboard
-        - --default-ssl-certificate=default/crossroads-ssl
+        - --default-backend-service=$(POD_NAMESPACE)/dashboard-fake-default-backend-service
+        - --default-ssl-certificate=kube-system/crossroads-ssl
         - --annotations-prefix=ingress.kubernetes.io
         - --ingress-class=nginx
