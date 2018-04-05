@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   type: LoadBalancer
+  loadBalancerIP: $K8S_DASHBOARD_IP
   ports:
   - name: http
     port: 80
