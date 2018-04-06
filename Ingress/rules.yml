@@ -10,6 +10,7 @@ spec:
     - $MAESTRO_HOST_NAME
     - $CMS_HOST_NAME
     - $GO_LOCAL_HOST_NAME
+    - $SERVE_HOST_NAME
     secretName: crossroads-ssl
   rules:
   - host: $MAESTRO_HOST_NAME
@@ -36,4 +37,11 @@ spec:
       - path: /
         backend:
           serviceName: go-local-service
+          servicePort: 80
+  - host: $SERVE_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: serve-service
           servicePort: 80
