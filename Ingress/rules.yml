@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: crds-ingress
+  annotations:
+    ingress.kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - $MAESTRO_HOST_NAME
+    - $CMS_HOST_NAME
+    - $GO_LOCAL_HOST_NAME
+    - $SERVE_HOST_NAME
+    secretName: crossroads-ssl
+  rules:
+  - host: $MAESTRO_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: maestro-varnish-service
+          servicePort: 80
+      - path: /serve-signup
+        backend:
+          serviceName: serve-service
+          servicePort: 80
+  - host: $CMS_HOST_NAME
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: cms-varnish-service
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: cms-ss-admin-service
+          servicePort: 80
+  - host: $GO_LOCAL_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: go-local-service
+          servicePort: 80
+  - host: $SERVE_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: serve-service
+          servicePort: 80
