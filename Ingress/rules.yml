@@ -20,14 +20,14 @@ spec:
         backend:
           serviceName: maestro-varnish-service
           servicePort: 80
-      - path: /serve-signup
+      - path: /serve-signup/
         backend:
           serviceName: serve-service
           servicePort: 80
   - host: $CMS_HOST_NAME
     http:
       paths:
-      - path: /api
+      - path: /api/
         backend:
           serviceName: cms-varnish-service
           servicePort: 80
