@@ -6,3 +6,4 @@ data:
   proxy-connect-timeout: "300"
   proxy-read-timeout: "300"
   proxy-send-timeout: "120"
+  proxy-body-size: "10g"
