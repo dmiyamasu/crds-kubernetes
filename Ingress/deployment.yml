@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: crds-ingress
-        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.14.0
         imagePullPolicy: Always
         resources:
           limits:
@@ -37,6 +37,7 @@ spec:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/crds-fake-default-backend-service
         - --configmap=$(POD_NAMESPACE)/crds-ingress-nginx-config
-        - --default-ssl-certificate=default/crossroads-ssl
-        - --annotations-prefix=ingress.kubernetes.io
+        - --default-ssl-certificate=$(POD_NAMESPACE)/crossroads-ssl
+        - --annotations-prefix=nginx.ingress.kubernetes.io
         - --ingress-class=nginx
+        - --watch-namespace=$(POD_NAMESPACE)
