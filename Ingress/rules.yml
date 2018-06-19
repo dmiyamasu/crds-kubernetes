@@ -22,7 +22,7 @@ spec:
           servicePort: 80
       - path: /serve-signup/
         backend:
-          serviceName: serve-service
+          serviceName: crds-serve-service
           servicePort: 80
   - host: $CMS_HOST_NAME
     http:
