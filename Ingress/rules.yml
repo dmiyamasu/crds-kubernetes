@@ -22,7 +22,7 @@ spec:
           servicePort: 80
       - path: /serve-signup/
         backend:
-          serviceName: serve-service
+          serviceName: crds-serve-service
           servicePort: 80
   - host: $CMS_HOST_NAME
     http:
@@ -41,6 +41,13 @@ spec:
       - path: /
         backend:
           serviceName: go-local-service
+          servicePort: 80
+  - host: $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: crds-form-builder-frontend-service
           servicePort: 80
   - host: $API_HOST_NAME
     http:
