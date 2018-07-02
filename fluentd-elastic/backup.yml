@@ -1,0 +1,76 @@
+# Elasticsearch deployment itself
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: elasticsearch-logging-test
+  namespace: kube-system
+  labels:
+    k8s-app: elasticsearch-logging-test
+    version: v5.5.1
+    # kubernetes.io/cluster-service: "true"
+    # addonmanager.kubernetes.io/mode: Reconcile
+spec:
+  serviceName: elasticsearch-logging-test
+  replicas: 2
+  selector:
+    matchLabels:
+      k8s-app: elasticsearch-logging-test
+      version: v5.5.1
+  template:
+    metadata:
+      labels:
+        k8s-app: elasticsearch-logging-test
+        version: v5.5.1
+        # kubernetes.io/cluster-service: "true"
+    spec:
+      # serviceAccountName: elasticsearch-logging
+      containers:
+      - image: pnimages.azurecr.io/storagedemo:1 #gcr.io/google-containers/elasticsearch:v5.5.1-1
+        name: elasticsearch-logging-test
+        resources:
+          # need more cpu upon initialization, therefore burstable class
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m
+        ports:
+        - containerPort: 9200
+          name: db
+          protocol: TCP
+        - containerPort: 9300
+          name: transport
+          protocol: TCP
+        volumeMounts:
+        - name: es-logging
+          mountPath: /storage
+        env:
+        - name: "NODE_NAME"
+          valueFrom:
+            fieldRef:
+              fieldPath:
+                metadata.name
+        - name: "NAMESPACE"
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: "MINIMUM_MASTER_NODES"
+          value: "1"
+      # Elasticsearch requires vm.max_map_count to be at least 262144.
+      # If your OS already sets up this number to a higher value, feel free
+      # # to remove this init container.
+      # initContainers:
+      # - image: alpine:3.6
+      #   command: ["/sbin/sysctl", "-w", "vm.max_map_count=262144"]
+      #   name: elasticsearch-logging-init
+      #   securityContext:
+      #     privileged: true
+
+  volumeClaimTemplates:
+    - metadata:
+        name: es-logging
+      spec:
+        accessModes: [ "ReadWriteMany" ]
+        storageClassName: "azuretestfilestorage"
+        resources:
+          requests:
+            storage: 2Gi

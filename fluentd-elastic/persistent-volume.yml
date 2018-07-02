@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logging-persistent-volume
+  namespace: kube-system
+  labels: 
+    storage: logging
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azureloggingfilestorage
+  azureFile:
+    secretName: logging-persistent-secret
+    shareName: logs
+    readOnly: false
