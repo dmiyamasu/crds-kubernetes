@@ -5,6 +5,7 @@ metadata:
   namespace: api
   annotations:
     ingress.kubernetes.io/ingress.class: "nginx-api"
+    ingress.kubernetes.io/rewrite-target: "/"
 spec:
   tls:
   - hosts:
