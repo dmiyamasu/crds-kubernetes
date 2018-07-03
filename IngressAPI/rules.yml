@@ -4,7 +4,7 @@ metadata:
   name: api-ingress
   namespace: api
   annotations:
-    ingress.kubernetes.io/ingress.class: "api-nginx"
+    ingress.kubernetes.io/ingress.class: "api"
     nginx.ingress.kubernetes.io/rewrite-target: "/"
     # nginx.ingress.kubernetes.io/add-base-url: "true" # Does not appear we need this
 spec:

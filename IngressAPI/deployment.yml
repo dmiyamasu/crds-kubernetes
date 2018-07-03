@@ -31,5 +31,5 @@ spec:
         - --default-backend-service=$(POD_NAMESPACE)/api-fake-default-backend-service
         - --default-ssl-certificate=api/crossroads-ssl
         - --annotations-prefix=nginx.ingress.kubernetes.io
-        - --ingress-class=api-nginx
+        - --ingress-class=api
         - --watch-namespace=$(POD_NAMESPACE)
