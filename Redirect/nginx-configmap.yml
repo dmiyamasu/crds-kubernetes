@@ -8,12 +8,11 @@ data:
       listen                  80;
       server_name             crossroads.net;
       location /media {
-        rewrite ^/media[^?]*$ ${MEDIA_URL}$1 permanent; # Remove query string
-        # rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent; # Keep query string
+        rewrite ^/media(.*)$ ${MEDIA_URL}$1? permanent; # Keep query string by removing trailing '?'
       }
       
       location /series {
-        return 301 ${MEDIA_URL}$uri;
+        return 301 ${MEDIA_URL}$uri; # Keep query string by using $request_uri instead of $uri
       }
 
       location /message {
