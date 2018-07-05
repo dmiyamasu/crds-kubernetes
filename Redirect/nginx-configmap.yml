@@ -8,5 +8,8 @@ data:
       listen                  80;
       server_name             crossroads.net;
       rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent;
+      rewrite ^/series(.*)$ ${MEDIA_URL}$1 permanent;
+      rewrite ^/message(.*)$ ${MEDIA_URL}$1 permanent;
+      rewrite ^/podcasts(.*)$ ${MEDIA_URL}$1 permanent;
     }
     

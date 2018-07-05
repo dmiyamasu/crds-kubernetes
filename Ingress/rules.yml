@@ -28,6 +28,18 @@ spec:
         backend:
           serviceName: redirect-service
           servicePort: 80
+      - path: /series
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
+      - path: /message
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
+      - path: /podcasts
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
   - host: $CMS_HOST_NAME
     http:
       paths:
