@@ -24,3 +24,7 @@ spec:
         backend:
           serviceName: attendance-service
           servicePort: 80
+      - path: /finance
+        backend:
+          serviceName: crds-finance-service
+          servicePort: 80
