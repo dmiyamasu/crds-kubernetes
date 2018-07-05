@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redirect-config
+data:
+  default.conf: |
+    server {
+      listen                  80;
+      server_name             crossroads.net;
+      rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent;
+    }
+    

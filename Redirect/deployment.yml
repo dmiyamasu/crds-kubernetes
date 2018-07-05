@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redirect
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redirect
+    spec:
+      containers:
+      - image: nginx:1.13.6-alpine 
+        imagePullPolicy: Always
+        name: redirect
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: redirect-configs
+          mountPath: /etc/nginx/conf.d
+      # Load the configuration files for nginx
+      volumes:
+        - name: redirect-configs
+          configMap:
+            name: redirect-config
