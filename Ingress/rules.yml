@@ -60,3 +60,10 @@ spec:
         backend:
           serviceName: fred-service
           servicePort: 80
+  - host: $API_HOST_NAME
+    http:
+      paths:
+      - path: /finance
+        backend:
+          serviceName: crds-finance-service
+          servicePort: 80
