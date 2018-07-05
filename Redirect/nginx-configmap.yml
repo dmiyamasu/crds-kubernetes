@@ -7,6 +7,20 @@ data:
     server {
       listen                  80;
       server_name             crossroads.net;
-      rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent;
+      location /media {
+        rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent;
+      }
+      
+      location /series {
+        return 301 ${MEDIA_URL}$uri;
+      }
+
+      location /message {
+        return 301 ${MEDIA_URL}$uri;
+      }
+
+      location /podcasts {
+        return 301 ${MEDIA_URL}$uri;
+      }
     }
     
