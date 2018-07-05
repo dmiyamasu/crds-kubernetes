@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - $API_HOST_NAME
+    - $API_HOST_NAME_TEMP
     secretName: crossroads-ssl
   rules:
-  - host: $API_HOST_NAME
+  - host: $API_HOST_NAME_TEMP
     http:
       paths:
       - path: /fred
