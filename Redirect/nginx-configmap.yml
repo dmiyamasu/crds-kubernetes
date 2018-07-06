@@ -8,19 +8,20 @@ data:
       listen                  80;
       server_name             crossroads.net;
       location /media {
-        rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent; # Remove query string by adding trailing '?' after $1
+        # rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent; # Remove query string by adding trailing '?' after $1
+        return 302 ${MEDIA_URL}$request_uri;
       }
       
       location /series {
-        return 301 ${MEDIA_URL}$request_uri; # Remove query string by using removing the $uri var instead of $request_uri
+        return 302 ${MEDIA_URL}$request_uri; # Remove query string by using removing the $uri var instead of $request_uri
       }
 
       location /message {
-        return 301 ${MEDIA_URL}$request_uri;
+        return 302 ${MEDIA_URL}$request_uri;
       }
 
       location /podcasts {
-        return 301 ${MEDIA_URL}$request_uri;
+        return 302 ${MEDIA_URL}$request_uri;
       }
     }
     
