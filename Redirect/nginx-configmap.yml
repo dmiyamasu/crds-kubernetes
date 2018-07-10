@@ -23,5 +23,17 @@ data:
       location /podcasts {
         return 302 ${MEDIA_URL}$request_uri;
       }
+
+      location /videos {
+        return 302 ${MEDIA_URL}$request_uri;
+      }
+
+      location /articles {
+        return 302 ${MEDIA_URL}$request_uri;
+      }
+
+      location /music {
+        return 302 ${MEDIA_URL}$request_uri;
+      }
     }
     
