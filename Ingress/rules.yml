@@ -40,6 +40,18 @@ spec:
         backend:
           serviceName: redirect-service
           servicePort: 80
+      - path: /videos
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
+      - path: /articles
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
+      - path: /music
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
   - host: $CMS_HOST_NAME
     http:
       paths:
