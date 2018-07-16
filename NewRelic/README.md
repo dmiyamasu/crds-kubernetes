@@ -1,0 +1,1 @@
+This sets up a daemonset to run the new relic agent on all the kubernetes nodes. A daemonset is a special kubernetes workload type that applies a pod to every node in the cluster.
