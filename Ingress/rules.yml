@@ -10,7 +10,6 @@ spec:
     - $MAESTRO_HOST_NAME
     - $CMS_HOST_NAME
     - $GO_LOCAL_HOST_NAME
-    - $API_HOST_NAME
     secretName: crossroads-ssl
   rules:
   - host: $MAESTRO_HOST_NAME
@@ -76,11 +75,4 @@ spec:
       - path: /
         backend:
           serviceName: crds-form-builder-frontend-service
-          servicePort: 80
-  - host: $API_HOST_NAME
-    http:
-      paths:
-      - path: /fred
-        backend:
-          serviceName: fred-service
           servicePort: 80
