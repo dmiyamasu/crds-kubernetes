@@ -10,6 +10,7 @@ spec:
     - $MAESTRO_HOST_NAME
     - $CMS_HOST_NAME
     - $GO_LOCAL_HOST_NAME
+    - $CHATTY_CATHY_HOST_NAME
     secretName: crossroads-ssl
   rules:
   - host: $MAESTRO_HOST_NAME
@@ -75,4 +76,11 @@ spec:
       - path: /
         backend:
           serviceName: crds-form-builder-frontend-service
+          servicePort: 80
+  - host: $CHATTY_CATHY_HOST_NAME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: chatty-cathy-service
           servicePort: 80
