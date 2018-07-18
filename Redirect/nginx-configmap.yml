@@ -35,5 +35,9 @@ data:
       location /music {
         return 302 ${MEDIA_URL}$request_uri;
       }
+
+      location /serve-signup {
+        rewrite ^/serve-signup(.*)$ ${SERVE_URL}$1 redirect;
+      }
     }
     

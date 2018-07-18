@@ -19,10 +19,6 @@ spec:
         backend:
           serviceName: maestro-varnish-service
           servicePort: 80
-      - path: /serve-signup/
-        backend:
-          serviceName: crds-serve-service
-          servicePort: 80
       - path: /media
         backend:
           serviceName: redirect-service
@@ -48,6 +44,10 @@ spec:
           serviceName: redirect-service
           servicePort: 80
       - path: /music
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
+      - path: /serve-signup
         backend:
           serviceName: redirect-service
           servicePort: 80
