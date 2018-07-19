@@ -37,7 +37,7 @@ data:
       }
 
       location /serve-signup {
-        rewrite ^/serve-signup(.*)$ ${SERVE_URL}$1 redirect;
+        rewrite ^/serve-signup(.*)$ ${SERVE_URL}$1 permanent;
       }
     }
     
