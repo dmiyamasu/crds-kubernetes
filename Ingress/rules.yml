@@ -10,7 +10,7 @@ spec:
     - $MAESTRO_HOST_NAME
     - $CMS_HOST_NAME
     - $GO_LOCAL_HOST_NAME
-    - $API_HOST_NAME
+    - $CHATTY_CATHY_HOST_NAME
     secretName: crossroads-ssl
   rules:
   - host: $MAESTRO_HOST_NAME
@@ -19,10 +19,6 @@ spec:
       - path: /
         backend:
           serviceName: maestro-varnish-service
-          servicePort: 80
-      - path: /serve-signup/
-        backend:
-          serviceName: crds-serve-service
           servicePort: 80
       - path: /media
         backend:
@@ -52,6 +48,10 @@ spec:
         backend:
           serviceName: redirect-service
           servicePort: 80
+      - path: /serve-signup
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
   - host: $CMS_HOST_NAME
     http:
       paths:
@@ -77,10 +77,10 @@ spec:
         backend:
           serviceName: crds-form-builder-frontend-service
           servicePort: 80
-  - host: $API_HOST_NAME
+  - host: $CHATTY_CATHY_HOST_NAME
     http:
       paths:
-      - path: /fred
+      - path: /
         backend:
-          serviceName: fred-service
+          serviceName: chatty-cathy-service
           servicePort: 80
