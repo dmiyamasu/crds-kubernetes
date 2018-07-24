@@ -52,6 +52,10 @@ spec:
         backend:
           serviceName: redirect-service
           servicePort: 80
+      - path: /me
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
   - host: $CMS_HOST_NAME
     http:
       paths:

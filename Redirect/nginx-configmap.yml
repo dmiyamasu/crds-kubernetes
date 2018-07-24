@@ -39,5 +39,10 @@ data:
       location /serve-signup {
         rewrite ^/serve-signup(.*)$ ${SERVE_URL}$1 permanent;
       }
+
+      location /me {
+        rewrite ^/me(.*)$ ${PROFILE_URL}$1 permanent;
+      }
+      
     }
     
