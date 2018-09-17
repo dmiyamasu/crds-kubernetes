@@ -43,7 +43,7 @@ data:
       location /me {
         rewrite ^/me(.*)$ ${PROFILE_URL}$1 permanent;
       }
-      
+    }
   
     server {
       listen                  80;
