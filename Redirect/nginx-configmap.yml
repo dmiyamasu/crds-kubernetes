@@ -6,7 +6,7 @@ data:
   default.conf: |
     server {
       listen                  80;
-      server_name             crossroads.net;
+      server_name             ${MAESTRO_HOST_NAME};
       location /media {
         # rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent; # Remove query string by adding trailing '?' after $1
         return 302 ${MEDIA_URL}$request_uri;
@@ -43,6 +43,13 @@ data:
       location /me {
         rewrite ^/me(.*)$ ${PROFILE_URL}$1 permanent;
       }
-      
     }
-    
+  
+    server {
+      listen                  80;
+      server_name             ${GO_LOCAL_HOST_NAME};
+      location / {
+        # return 302 ${CROSSROADS_HOSTNAME}/golocal$request_uri;
+        return 302 ${CROSSROADS_HOSTNAME}/golocal$request_uri;
+      }
+    }
