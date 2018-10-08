@@ -5,6 +5,11 @@ metadata:
   namespace: api
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
   template:
     metadata:
       labels:
@@ -12,7 +17,7 @@ spec:
     spec:
       containers:
       - name: api-ingress
-        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.14.0
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.20.0
         imagePullPolicy: Always
         env:
         - name: POD_NAME
@@ -26,9 +31,28 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
         args:
         - /nginx-ingress-controller
-        - --default-backend-service=$(POD_NAMESPACE)/api-fake-default-backend-service
         - --default-ssl-certificate=api/crossroads-ssl
         - --annotations-prefix=nginx.ingress.kubernetes.io
         - --ingress-class=nginx

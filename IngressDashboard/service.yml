@@ -13,13 +13,3 @@ spec:
     port: 443
   selector:
     app: dashboard-ingress
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: dashboard-fake-default-backend-service
-  namespace: kube-system
-spec:
-  ports:
-  - name: http
-    port: 80
