@@ -3,8 +3,12 @@ kind: Deployment
 metadata:
   name: crds-ingress
 spec:
-  minReadySeconds: 10
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
   template:
     metadata:
       labels:
@@ -12,7 +16,7 @@ spec:
     spec:
       containers:
       - name: crds-ingress
-        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.14.0
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.20.0
         imagePullPolicy: Always
         resources:
           limits:
@@ -33,9 +37,28 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
         args:
         - /nginx-ingress-controller
-        - --default-backend-service=$(POD_NAMESPACE)/crds-fake-default-backend-service
         - --configmap=$(POD_NAMESPACE)/crds-ingress-nginx-config
         - --default-ssl-certificate=$(POD_NAMESPACE)/crossroads-ssl
         - --annotations-prefix=nginx.ingress.kubernetes.io
