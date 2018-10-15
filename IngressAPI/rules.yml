@@ -28,3 +28,7 @@ spec:
         backend:
           serviceName: crds-finance-service
           servicePort: 80
+      - path: /event-checkin
+        backend:
+          serviceName: crds-event-checkin-service
+          servicePort: 80
