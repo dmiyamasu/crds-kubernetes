@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-tcp-ingress-conf
+data:
+  3000: "default/email-blackhole-service:3000"

@@ -10,5 +10,7 @@ spec:
     port: 80
   - name: https
     port: 443
+  - name: email
+    port: 3000
   selector:
     app: crds-ingress
