@@ -32,3 +32,7 @@ spec:
         backend:
           serviceName: crds-event-checkin-service
           servicePort: 80
+      - path: /auth
+        backend:
+          serviceName: crds-auth-service
+          servicePort: 80
