@@ -53,3 +53,11 @@ data:
         return 302 ${CROSSROADS_HOSTNAME}/golocal$request_uri;
       }
     }
+
+    server {
+      listen                  80;
+      location /health {
+          return 200 'alive';
+          add_header Content-Type text/plain;
+      }
+    }
