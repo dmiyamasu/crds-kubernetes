@@ -55,7 +55,7 @@ data:
     }
 
     server {
-      listen                  80;
+      listen                  80 default_server;
       location /health {
           return 200 'alive';
           add_header Content-Type text/plain;
