@@ -55,6 +55,14 @@ data:
     }
 
     server {
+      listen                  80;
+      server_name             ${CMS_HOST_NAME};
+      location / {
+        proxy_pass  ${SS_CMS_WRAPPER_URL};
+      }
+    }
+
+    server {
       listen                  80 default_server;
       location /health {
           return 200 'alive';
