@@ -59,6 +59,10 @@ spec:
   - host: $CMS_HOST_NAME
     http:
       paths:
+      - path: /api/contentblock
+        backend:
+          serviceName: redirect-service
+          servicePort: 80
       - path: /api/
         backend:
           serviceName: cms-varnish-service
