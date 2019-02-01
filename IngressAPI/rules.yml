@@ -43,3 +43,7 @@ spec:
         backend:
           serviceName: crds-serve-service
           servicePort: 80
+      - path: /search-index
+        backend:
+          serviceName: crds-search-index-service
+          servicePort: 80
