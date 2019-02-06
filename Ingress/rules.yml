@@ -76,7 +76,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: redirect-service
+          serviceName: go-local-service
           servicePort: 80
   - host: $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
     http:
