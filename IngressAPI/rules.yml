@@ -19,6 +19,10 @@ spec:
   - host: $API_HOST_NAME
     http:
       paths:
+      - path: /golocal
+        backend:
+          serviceName: crds-go-local-api-service
+          servicePort: 80
       - path: /fred
         backend:
           serviceName: fred-service
