@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: identity-api-ingress
+  namespace: api
+  annotations:
+    ingress.kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: "/api/okta/register"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  tls:
+  - hosts:
+    - api-int.crossroads.net
+    secretName: crossroads-ssl
+  rules:
+  - host: api-int.crossroads.net
+    http:
+      paths:
+      - path: /identity/api/okta/register
+        backend:
+          serviceName: crds-identity-service
+          servicePort: 80
