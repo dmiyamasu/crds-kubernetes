@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - api-int.crossroads.net
+    - $API_HOST_NAME
     secretName: crossroads-ssl
   rules:
-  - host: api-int.crossroads.net
+  - host: $API_HOST_NAME
     http:
       paths:
       - path: /identity/api/okta/register
