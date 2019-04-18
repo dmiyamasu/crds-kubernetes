@@ -12,46 +12,46 @@ metadata:
     # nginx.ingress.kubernetes.io/add-base-url: "true" # Does not appear we need this
 spec:
   tls:
-    - hosts:
-        - $API_HOST_NAME
-      secretName: crossroads-ssl
+  - hosts:
+    - $API_HOST_NAME
+    secretName: crossroads-ssl
   rules:
-    - host: $API_HOST_NAME
-      http:
-        paths:
-          - path: /golocal
-            backend:
-              serviceName: crds-go-local-api-service
-              servicePort: 80
-          - path: /fred
-            backend:
-              serviceName: fred-service
-              servicePort: 80
-          - path: /attendance
-            backend:
-              serviceName: attendance-service
-              servicePort: 80
-          - path: /finance
-            backend:
-              serviceName: crds-finance-service
-              servicePort: 80
-          - path: /event-checkin
-            backend:
-              serviceName: crds-event-checkin-service
-              servicePort: 80
-          - path: /auth
-            backend:
-              serviceName: crds-auth-service
-              servicePort: 80
-          - path: /serve
-            backend:
-              serviceName: crds-serve-service
-              servicePort: 80
-          - path: /search-index
-            backend:
-              serviceName: crds-search-index-service
-              servicePort: 80
-          - path: /kc-checkin
-            backend:
-              serviceName: crds-kids-club-checkin-service
-              servicePort: 80
+  - host: $API_HOST_NAME
+    http:
+      paths:
+      - path: /golocal
+        backend:
+          serviceName: crds-go-local-api-service
+          servicePort: 80
+      - path: /fred
+        backend:
+          serviceName: fred-service
+          servicePort: 80
+      - path: /attendance
+        backend:
+          serviceName: attendance-service
+          servicePort: 80
+      - path: /finance
+        backend:
+          serviceName: crds-finance-service
+          servicePort: 80
+      - path: /event-checkin
+        backend:
+          serviceName: crds-event-checkin-service
+          servicePort: 80
+      - path: /auth
+        backend:
+          serviceName: crds-auth-service
+          servicePort: 80
+      - path: /serve
+        backend:
+          serviceName: crds-serve-service
+          servicePort: 80
+      - path: /search-index
+        backend:
+          serviceName: crds-search-index-service
+          servicePort: 80
+      - path: /kc-checkin
+        backend:
+          serviceName: crds-kids-club-checkin-service
+          servicePort: 80
