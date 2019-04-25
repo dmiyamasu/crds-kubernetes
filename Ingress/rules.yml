@@ -8,6 +8,8 @@ spec:
   tls:
   - hosts:
     - $CHATTY_CATHY_HOST_NAME
+    - $CMS_HOST_NAME
+    - $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
     secretName: crossroads-ssl
   - host: $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
     http:
@@ -15,6 +17,13 @@ spec:
       - path: /
         backend:
           serviceName: crds-form-builder-frontend-service
+          servicePort: 80
+  - host: $CMS_HOST_NAME
+    http:
+      paths:
+      - path: /api/contentblock
+        backend:
+          serviceName: redirect-service
           servicePort: 80
   - host: $CHATTY_CATHY_HOST_NAME
     http:
