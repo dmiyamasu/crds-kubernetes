@@ -11,6 +11,7 @@ spec:
     - $CMS_HOST_NAME
     - $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
     secretName: crossroads-ssl
+  rules:
   - host: $CRDS_FORM_BUILDER_FRONTEND_HOST_NAME
     http:
       paths:
