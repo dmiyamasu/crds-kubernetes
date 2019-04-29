@@ -4,55 +4,6 @@ metadata:
   name: redirect-config
 data:
   default.conf: |
-    server {
-      listen                  80;
-      server_name             ${MAESTRO_HOST_NAME};
-      location /media {
-        # rewrite ^/media(.*)$ ${MEDIA_URL}$1 permanent; # Remove query string by adding trailing '?' after $1
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-      
-      location /series {
-        return 302 ${MEDIA_URL}$request_uri; # Remove query string by using removing the $uri var instead of $request_uri
-      }
-
-      location /message {
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-
-      location /podcasts {
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-
-      location /videos {
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-
-      location /articles {
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-
-      location /music {
-        return 302 ${MEDIA_URL}$request_uri;
-      }
-
-      location /serve-signup {
-        rewrite ^/serve-signup(.*)$ ${SERVE_URL}$1 permanent;
-      }
-
-      location /me {
-        rewrite ^/me(.*)$ ${PROFILE_URL}$1 permanent;
-      }
-    }
-  
-    server {
-      listen                  80;
-      server_name             ${GO_LOCAL_HOST_NAME};
-      location / {
-        # return 302 ${CROSSROADS_HOSTNAME}/golocal$request_uri;
-        return 302 ${CROSSROADS_HOSTNAME}/golocal$request_uri;
-      }
-    }
 
     server {
       listen                  80;
