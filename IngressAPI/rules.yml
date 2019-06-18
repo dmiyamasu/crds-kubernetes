@@ -51,6 +51,10 @@ spec:
         backend:
           serviceName: crds-search-index-service
           servicePort: 80
+      - path: /kc-checkin
+        backend:
+          serviceName: crds-kids-club-checkin-service
+          servicePort: 80
       - path: /video-service
         backend:
           serviceName: crds-video-service
