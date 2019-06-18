@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress
+  namespace: api
+  annotations:
+    ingress.kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    nginx.ingress.kubernetes.io/session-cookie-name: "REALTIMESERVERID"
+spec:
+  tls:
+  - hosts:
+    - $API_HOST_NAME
+    secretName: crossroads-ssl
+  rules:
+  - host: $API_HOST_NAME
+    http:
+      paths:
+      - path: /kc-checkin
+        backend:
+          serviceName: crds-kids-club-checkin-service
+          servicePort: 80
