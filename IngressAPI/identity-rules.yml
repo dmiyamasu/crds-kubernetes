@@ -18,7 +18,7 @@ spec:
   - host: $API_HOST_NAME
     http:
       paths:
-      - path: /identity/api/okta/register
+      - path: /identity
         backend:
           serviceName: crds-identity-service
           servicePort: 80
