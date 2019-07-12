@@ -55,3 +55,7 @@ spec:
         backend:
           serviceName: crds-video-service
           servicePort: 80
+      - path: /graphql-api
+        backend:
+          serviceName: crds-graphql-api
+          servicePort: 80
